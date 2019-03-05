@@ -1,15 +1,15 @@
-#burger-menu {
+#sushi-menu {
   display: grid;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
   text-align: center;
 }
-.burger {
+.sushi {
   display: grid;
   /* max-height: 400px; */
 }
-.burger .button {
+.sushi .button {
   align-self: end;
 }
 
@@ -22,11 +22,11 @@ html {
 body {
 	width: 100wh;
 	height: 100vh;
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	/* background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
-	animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite; */
 }
 
 @-webkit-keyframes Gradient {
@@ -65,20 +65,17 @@ body {
 	}
 }
 
-
-
-
 * {
   box-sizing: border-box;
 }
-.burger {
+.sushi {
   box-shadow: 0px 1px 5px #555;
   background-color: white;
 }
-.burger_title {
+.sushi_title {
   font-size: 0.8rem;
 }
-.burger_description {
+.sushi_description {
   padding: .5rem;
   line-height: 1.6em;
 }
@@ -110,7 +107,7 @@ img {
   grid-template-rows: 50px 350px 50px;
   grid-template-areas:
     "h h h h h h h h h h h h"
-    "m m c c c c c c c o o o "
+    "m m c c c c c c o o o o "
 }
 
 .header {
@@ -174,10 +171,10 @@ li{
   transition: all .2s ease-in-out;
 }
 .grow:hover {
-  transform: scale(1.025);
+  transform: scale(1.05);
 }
 
-#burger-menu {
+#sushi-menu {
   max-height: 100vh;
   overflow: auto;
 }
