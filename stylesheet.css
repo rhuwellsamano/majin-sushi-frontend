@@ -7,12 +7,11 @@
 
 
 
-
 /* might make separate style sheets for separate elementsconcerns */
 
 
 #sushi-menu {
-  /* display: grid; */
+  display: grid;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 1rem;
@@ -56,8 +55,11 @@
 
 
 html {
-  font-size: 14px;
-  font-family:  'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 18px;
+  /* font-family:  'Helvetica Neue', 'Arial', sans-serif; */
+  font-family: 'Slackey', cursive;
+
+
 }
 
 body {
@@ -125,7 +127,7 @@ body {
 }
 .sushi-title {
   font-size: 1.5rem;
-  padding: 15px;
+  padding: 10px;
   padding-left: 20px;
   color: #FFF;
   font-weight: bold;
@@ -146,7 +148,7 @@ body {
 
 .sushi-price {
   font-size: 1.5rem;
-  padding: 15px;
+  padding: 10px;
   padding-right: 20px;
   color: #FFF;
   font-weight: bold;
@@ -200,6 +202,7 @@ body {
 
 .remove-from-order-button {
   width: 50px;
+  margin: 10px;
 }
 
 .order-item {
@@ -210,11 +213,16 @@ body {
   padding-top: 5px;
 }
 
+.order-item-name {
+  margin: 5px;
+}
+
 .order-item-image {
   max-width: 100px;
   height: auto;
-  margin: 10px;
-  align-self: flex-start;
+  margin-bottom: 15px;
+
+  /* align-self: flex-start; */
 }
 
 .span-width {
@@ -475,6 +483,14 @@ shine:hover {
 }
 .wobble { -webkit-animation: wobble 4s infinite; }
 
+
+@-webkit-keyframes hobble  {
+  0%  { -webkit-transform:  rotate(0deg); }
+  20%  { -webkit-transform:  rotate(1deg); }
+  50%  { -webkit-transform:  rotate(-1deg); }
+  100%  { -webkit-transform:  rotate(0deg); }
+}
+.hobble { -webkit-animation: hobble 0.5s infinite; }
 
 
 
