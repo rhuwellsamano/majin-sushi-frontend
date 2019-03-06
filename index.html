@@ -9,6 +9,7 @@
 
 
   <title>Majin Sushi</title>
+
 </head>
 <body>
 
@@ -64,15 +65,21 @@
 
     <div class="order">
       <h2 class="order-title">Your Wish</h2>
+      <button class="checkout-button empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
       <button class="empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playRemoveItemFromOrderClick()>Empty Cart</button>
       <div id="order-list">
-      </div>
-      <button class="checkout-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
+
+        <div class="order-item card"><img src="https://sushistickers.com/img/sushi-slice_99.png" class="order-item-image grow grow:hover wobble">🍣 ITEM 1 NAME
+        <button class"remove-from-order-button" onclick=playRemoveItemFromOrderClick()>Remove</button></div>
     </div>
+  </div>
 
     <div class="menu">
       <br>
-      <h2 class="majin-title">Majin Sushi Menu</h2>
+      <!-- <h2 class="majin-title">
+          Majin Sushi Menu
+      </h2> -->
+
       <div id="sushi-menu" class="animated fadeIn">
       </div>
     </div>
@@ -98,5 +105,6 @@
 
 
 </body>
+<script src="audio.js" charset="utf-8"></script>
 <script src="index.js" charset="utf-8"></script>
 </html>
