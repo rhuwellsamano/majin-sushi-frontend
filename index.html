@@ -7,82 +7,96 @@
   <link href="stylesheet.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+
   <title>Majin Sushi</title>
 </head>
 <body>
+
+<!-- background music // comment out if you want it off -->
+  <iframe src="music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+  </iframe>
+
+<!-- sound effect for sushi mouseover -->
+  <audio id="sushi-mouseover">
+    <source src="mouseover.mp3" type="audio/mp3">
+    <source src="mouseover.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="button-mouseover">
+    <source src="button-mouseover.wav" type="audio/wav">
+    <source src="button-mouseover.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="add-sushi-to-order-click">
+    <source src="add-sushi-to-order-click.wav" type="audio/wav">
+    <source src="add-sushi-to-order-click.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="remove-button-click">
+    <source src="remove-button-click.mp3" type="audio/mp3">
+    <source src="remove-button-click.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="remove-item-from-order-click">
+    <source src="remove-item-from-order-click.wav" type="audio/wav">
+    <source src="remove-item-from-order-click.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="checkout-click">
+    <source src="checkout-click.wav" type="audio/wav">
+    <source src="checkout-click.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <!-- note for above: i have to switch 'empty cart sound' with 'remove from menu sound' -->
+
+
+  <div class="background-div animated fadeIn">
   <div class="container">
     <div class="header">
       <!-- <h1 id="heading"></h1> -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
     </div>
 
     <div class="order">
-      <h2>Your Wish</h2>
-      <button class="empty-cart-button">Empty Cart</button>
+      <h2 class="order-title">Your Wish</h2>
+      <button class="empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playRemoveItemFromOrderClick()>Empty Cart</button>
       <div id="order-list">
       </div>
-      <button class="checkout-button">Checkout</button>
+      <button class="checkout-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
     </div>
 
     <div class="menu">
       <br>
-      <br>
-      <h2>Majin Sushi Menu</h2>
-      <div id="sushi-menu">
+      <h2 class="majin-title">Majin Sushi Menu</h2>
+      <div id="sushi-menu" class="animated fadeIn">
       </div>
     </div>
 
     <div class="custom">
-      <h2>Customize Your Sushi:</h2>
+      <h2 class="customize-title">Customize Your Sushi:</h2>
       <form id="custom-sushi">
-        <label>Name:</label>
-        <input type="text" name="name" id="sushi-name">
+        <p><label>Name:</label>
+        <p><input type="text" name="name" id="sushi-name">
         <br/>
-        <label>Description:</label>
-        <input type="text" name="description" id="sushi-description">
+        <p><label>Description:</label>
+        <p><input type="text" name="description" id="sushi-description">
         <br/>
-        <label>Image URL:</label>
-        <input type="text" name="url" id="sushi-image">
+        <p><label>Image URL:</label>
+        <p><input type="text" name="url" id="sushi-image">
         <br/>
         <br/>
-        <input class="submit-button" type="submit" value="Submit Order"></input>
+        <input class="submit-button button-grow button-grow:hover" type="submit" value="Submit Order" onmouseover=playButtonMouseover()></input>
       </form>
     </div>
   </div>
+</div>
+
+
 </body>
 <script src="index.js" charset="utf-8"></script>
 </html>
