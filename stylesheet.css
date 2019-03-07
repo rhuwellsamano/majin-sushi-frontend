@@ -11,7 +11,7 @@
 
 
 #sushi-menu {
-  display: grid;
+  /* display: grid; */
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 1rem;
@@ -37,10 +37,17 @@
 
 .empty-cart-button {
   margin: 15px;
+  font-size: 18px;
+  font-family: 'Slackey', 'Open-Sans';
 }
 
+
+
 .order .checkout-button {
+    margin: 15px;
   outline-style: none;
+  font-size: 18px;
+  font-family: 'Slackey', 'Open-Sans';
 }
 
 .checkout-button {
@@ -49,15 +56,21 @@
 
 .custom .submit-button {
   outline-style: none;
+  font-size: 18px;
+  font-family: 'Slackey', 'Open-Sans';
 
 }
 
+.logo {
+  max-height: 10%;
+  width: auto;
+}
 
 
 html {
   font-size: 18px;
   /* font-family:  'Helvetica Neue', 'Arial', sans-serif; */
-  font-family: 'Slackey', cursive;
+  font-family: 'Slackey', 'Open-Sans';
 
 
 }
@@ -66,6 +79,7 @@ body {
 	/* width: 100vw; */
 	height: 100vh;
   overflow: hidden;
+  background-color: whitesmoke
 }
 
 .background-div {
@@ -113,7 +127,10 @@ body {
 }
 
 .sushi {
-  box-shadow: 0px 1px 5px #555;
+
+/* comment out below to save processor/battery */
+
+  /* box-shadow: 0px 1px 5px #555;
   background-color: #FFF;
   margin-bottom: 15px;
   border-radius: 15px;
@@ -121,7 +138,7 @@ body {
   background-size: 400% 400%;
   -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite; */
 
 
 }
@@ -266,12 +283,17 @@ img {
   grid-area: m;
   /* background: #FFF; */
   border-radius: 5px;
-  height: 90vh;
+  height: 100vh;
   padding: 10px;
-  max-height: 90vh;
-  /* overflow: auto; */
+  max-height: 100vh;
+  overflow: auto;
 }
 
+
+.left-menu {
+  /* height: 100vh; */
+  overflow: auto;
+}
 
 
 .custom {
@@ -286,7 +308,7 @@ img {
 }
 
 .menu {
-  grid-area: c;
+  /* grid-area: c; */
   height: 100vh;
   overflow: auto;
 }
@@ -404,6 +426,15 @@ html.darkenPage {
   font-size: 1rem;
 }
 
+.money-div {
+  margin-top: 100px;
+}
+
+
+
+
+
+
 .shine {
   background-repeat: no-repeat;
   background-position: -120px -120px, 0 0;
@@ -486,11 +517,12 @@ shine:hover {
 
 @-webkit-keyframes hobble  {
   0%  { -webkit-transform:  rotate(0deg); }
-  20%  { -webkit-transform:  rotate(1deg); }
-  50%  { -webkit-transform:  rotate(-1deg); }
+  25%  { -webkit-transform:  rotate(0.8deg); }
+  50%  { -webkit-transform:  rotate(0deg); }
+  75%  { -webkit-transform:  rotate(-0.8deg); }
   100%  { -webkit-transform:  rotate(0deg); }
 }
-.hobble { -webkit-animation: hobble 0.5s infinite; }
+.hobble { -webkit-animation: hobble 2s infinite; }
 
 
 
@@ -503,17 +535,20 @@ shine:hover {
 a.tooltips {
     position: relative;
     display: inline;
+    font-size: 12px;
 }
 a.tooltips span {
     position: absolute;
-    width:140px;
+    width:250px;
     color: #778899;
     background: #F5F5F5;
-    height: 100px;
+    height: 150px;
     line-height: 100px;
     text-align: center;
     visibility: hidden;
     border-radius: 21px;
+    font-size: 12px;
+
 }
 a.tooltips span:after {
     content: '';
@@ -525,6 +560,8 @@ a.tooltips span:after {
     border-bottom: 8px solid #F5F5F5;
     border-right: 8px solid transparent;
     border-left: 8px solid transparent;
+    font-size: 12px;
+
 }
 a:hover.tooltips span {
     visibility: visible;
@@ -533,4 +570,6 @@ a:hover.tooltips span {
     left: 50%;
     margin-left: -76px;
     z-index: 999;
+    font-size: 12px;
+
 }

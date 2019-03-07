@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+
   <link href="stylesheet.css" rel="stylesheet">
 
   <!-- BOOTSTRAP -->
@@ -17,8 +21,8 @@
 <body>
 
 <!-- background music // comment out if you want it off -->
-  <!-- <iframe src="music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-  </iframe> -->
+  <iframe src="music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+  </iframe>
 
 <!-- sound effect for sushi mouseover -->
   <audio id="sushi-mouseover">
@@ -66,23 +70,52 @@
       <!-- <h1 id="heading"></h1> -->
     </div>
 
-    <div class="order">
-      <h2 class="order-title">Your Wish</h2>
+    <div class="order" id="order-div">
+
+<br>
+<img src="majin-logo.png" class="logo button-grow button-grow:hover"/>
+<br>
+<br>
+
+      <h2 class="order-title">Your Wishes</h2>
       <div id="order-list">
 
-        <div class="order-item card hobble">
-          <img src="https://sushistickers.com/img/sushi-slice_99.png" class="order-item-image grow grow:hover wobble">
+        <!-- <div class="order-item card hobble" onmouseover=playButtonMouseover()>
+          <img src="https://sushistickers.com/img/sushi-slice_99.png" class="order-item-image grow grow:hover wobble" onclick=playAddSushiToOrderClick()>
           <p class="order-item-name">
-            🍣 ITEM 1 NAME
+            🍣 Tako Supreme
           </p>
           <button class"remove-from-order-button" onclick=playRemoveItemFromOrderClick()>
             X
           </button>
         </div>
 
-        <button class="checkout-button empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
-        <button class="empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playRemoveItemFromOrderClick()>Empty Cart</button>
+        <div class="order-item card hobble" onmouseover=playButtonMouseover()>
+          <img src="https://sushistickers.com/img/sushi-slice_75.png" class="order-item-image grow grow:hover wobble" onclick=playAddSushiToOrderClick()>
+          <p class="order-item-name">
+            🍣 Tsundere Ebi
+          </p>
+          <button class"remove-from-order-button" onclick=playRemoveItemFromOrderClick()>
+            X
+          </button>
+        </div>
+
+        <div class="order-item card hobble" onmouseover=playButtonMouseover()>
+          <img src="https://sushistickers.com/img/sushi-slice_29.png" class="order-item-image grow grow:hover wobble" onclick=playAddSushiToOrderClick()>
+          <p class="order-item-name">
+            🍣 Oh Sake
+          </p>
+          <button class"remove-from-order-button" onclick=playRemoveItemFromOrderClick()>
+            X
+          </button>
+        </div> -->
+
     </div>
+
+    <button class="checkout-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
+
+    <button class="empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playRemoveItemFromOrderClick()>Empty Cart</button>
+
   </div>
 
     <div class="menu">
@@ -90,12 +123,13 @@
       <!-- <h2 class="majin-title">
           Majin Sushi Menu
       </h2> -->
-
       <div id="sushi-menu" class="animated fadeIn">
       </div>
     </div>
 
     <div class="custom">
+      <br>
+      <br>
       <h2 class="customize-title">Customize Your Sushi:</h2>
       <form id="custom-sushi">
         <p><label>Name:</label>
@@ -110,6 +144,18 @@
         <br/>
         <input class="submit-button button-grow button-grow:hover" type="submit" value="Submit Order" onmouseover=playButtonMouseover()></input>
       </form>
+
+
+
+      <div class="money-div">
+        <h3>Moneys:</h3>
+
+      </div>
+
+
+
+
+
     </div>
   </div>
 </div>
