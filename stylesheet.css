@@ -130,7 +130,7 @@ body {
 
 /* comment out below to save processor/battery */
 
-  /* box-shadow: 0px 1px 5px #555;
+  box-shadow: 0px 1px 5px #555;
   background-color: #FFF;
   margin-bottom: 15px;
   border-radius: 15px;
@@ -138,7 +138,7 @@ body {
   background-size: 400% 400%;
   -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite; */
+  animation: Gradient 15s ease infinite;
 
 
 }
@@ -146,7 +146,7 @@ body {
   font-size: 1.5rem;
   padding: 10px;
   padding-left: 20px;
-  color: #FFF;
+  color: whitesmoke;
   font-weight: bold;
 }
 
@@ -158,7 +158,7 @@ body {
   margin-top: 15px;
   padding-top: 15px;
   padding: .5rem;
-  color: #FFF;
+  color: whitesmoke;
   /* background-color: tomato; */
   line-height: 1.6em;
 }
@@ -167,7 +167,7 @@ body {
   font-size: 1.5rem;
   padding: 10px;
   padding-right: 20px;
-  color: #FFF;
+  color: whitesmoke;
   font-weight: bold;
 
 }
@@ -181,7 +181,7 @@ body {
 }
 
 
-.add-to-order-button, .checkout-button, .empty-cart-button, .submit-button {
+.add-to-order-button, .checkout-button, .empty-cart-button, .submit-button, .add-new-sushi-button {
   display: block;
   background-color: tomato;
   padding: 5px 10px;
@@ -246,7 +246,11 @@ body {
   width: 50px;
 }
 
-
+.add-new-sushi-button {
+  margin: 15px;
+  font-size: 18px;
+  font-family: 'Slackey', 'Open-Sans'; 
+}
 
 
 
@@ -430,7 +434,9 @@ html.darkenPage {
   margin-top: 100px;
 }
 
-
+#custom-sushi {
+  display: none;
+}
 
 
 

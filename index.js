@@ -5,6 +5,15 @@ const SUSHIS_URL = 'http://localhost:3000/sushis'
 const orderDiv = document.querySelector('#order-div')
 const orderList = document.querySelector('#order-list')
 const sushiMenu = document.querySelector('#sushi-menu')
+const moneyCounter = document.querySelector('#money-counter')
+const fullnessCounter = document.querySelector('#fullness-counter')
+const totalCostSpan = document.querySelector('#total-cost-span')
+const customDiv = document.querySelector('.custom')
+const customSushiForm = document.querySelector('#custom-sushi')
+const addNewSushiButton = document.querySelector('#add-new-sushi-button')
+
+let sushiCounter = 0
+let orderTotalCost = 0
 
 const getSushisFetch = () => {
   fetch(SUSHIS_URL)
@@ -58,11 +67,26 @@ const addSushiMenuItemToOrder = (event) => {
         <p class="order-item-name">
           🍣 ${name}
         </p>
-        <button class="remove-from-order-button" onclick=playRemoveItemFromOrderClick()>
+        <button class="remove-from-order-button" data-price="${price}" onclick=playRemoveItemFromOrderClick()>
           X
         </button>
       </div>
     `
+
+    let oldSushiCount = sushiCounter
+    let newSushiCount = oldSushiCount + 1
+    console.log('sushiCounter', sushiCounter)
+    console.log('newSushiCount', newSushiCount)
+    sushiCounter = newSushiCount
+    console.log('updated sushiCounter', sushiCounter)
+
+    console.log('order total cost before addition', orderTotalCost)
+    let beforeCost = orderTotalCost
+    console.log('before cost', beforeCost)
+    orderTotalCost = beforeCost + parseInt(price)
+    console.log('order total cost after addition', orderTotalCost)
+
+    totalCostSpan.innerHTML = `${orderTotalCost}`
   }
 }
 
@@ -72,9 +96,18 @@ const addEventListenerToOrderDivForEmptyCartButton = () => {
 
 const emptyCart = (event) => {
   if(event.target.classList.contains('empty-cart-button')){
-    debugger
     event.target.parentElement.querySelector('#order-list').innerHTML = ''
+
+
+    sushiCounter = 0
+    console.log(sushiCounter)
+
+    orderTotalCost = 0
+
+    totalCostSpan.innerHTML = `${orderTotalCost}`
   }
+
+
 }
 
 const addEventListenerToOrderListForRemoveItemButton = () => {
@@ -83,8 +116,28 @@ const addEventListenerToOrderListForRemoveItemButton = () => {
 
 const removeItemFromOrder = (event) => {
   if(event.target.classList.contains('remove-from-order-button')){
+
+    let price = event.target.dataset.price
+
     event.target.parentElement.remove()
+
+    let oldSushiCount = sushiCounter
+    let newSushiCount = oldSushiCount - 1
+    console.log('sushiCounter', sushiCounter)
+    console.log('newSushiCount', newSushiCount)
+    sushiCounter = newSushiCount
+    console.log('updated sushiCounter', sushiCounter)
+
+    console.log('order total cost before addition', orderTotalCost)
+    let beforeCost = orderTotalCost
+    console.log('before cost', beforeCost)
+    orderTotalCost = beforeCost - parseInt(price)
+    console.log('order total cost after addition', orderTotalCost)
+
+    totalCostSpan.innerHTML = `${orderTotalCost}`
+
   }
+
 }
 
 const addEventListenerToOrderDivForCheckoutButton = () => {
@@ -94,6 +147,98 @@ const addEventListenerToOrderDivForCheckoutButton = () => {
 const checkoutOrder = (event) => {
   if(event.target.classList.contains('checkout-button')){
     event.target.parentElement.querySelector('#order-list').innerHTML = ''
+
+    let oldFullnessCount = parseInt(fullnessCounter.innerHTML)
+    let fullnessEffect = sushiCounter * 15
+    let newFullnessCount = oldFullnessCount + fullnessEffect
+    fullnessCounter.innerHTML = newFullnessCount
+
+    console.log('new fullness count', newFullnessCount)
+
+
+    sushiCounter = 0
+    console.log(sushiCounter)
+
+    let beforeMoney = parseInt(moneyCounter.innerHTML)
+    let afterMoney = beforeMoney - orderTotalCost
+
+    moneyCounter.innerHTML = afterMoney
+
+    orderTotalCost = 0
+
+    totalCostSpan.innerHTML = `${orderTotalCost}`
+
+  }
+}
+
+const addEventListenerToCustomDivForAddNewSushiButton = () => {
+  customDiv.addEventListener('click', toggleNewSushiForm)
+}
+
+const toggleNewSushiForm = (event) => {
+  if (event.target.classList.contains('add-new-sushi-button')){
+
+    if(event.target.innerText === 'Add New Sushi'){
+      customSushiForm.style.display = 'block'
+      addNewSushiButton.innerText = `Hide Form`
+    } else {
+      customSushiForm.style.display = 'none'
+      addNewSushiButton.innerText = 'Add New Sushi'
+    }
+  }
+}
+
+const addEventListenerToNewSushiForm = () => {
+  customSushiForm.addEventListener('submit', postNewSushiFetch)
+}
+
+const postNewSushiFetch = (event) => {
+  event.preventDefault();
+
+  let name = customSushiForm.name.value
+  let description = customSushiForm.description.value
+  let price = customSushiForm.price.value
+
+  let imageDropdown = document.getElementById("sushi-image");
+  let image = imageDropdown.options[imageDropdown.selectedIndex].value;
+
+  customSushiForm.reset();
+
+  fetch(SUSHIS_URL, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      price: price,
+      image_url: image,
+      customize: ""
+    })
+  })
+  .then(res => res.json())
+  .then(newSushiObj => showOneSushi(newSushiObj))
+}
+
+const addEventListenerToSushiMenuForRemoveFromMenuButton = () => {
+  sushiMenu.addEventListener('click', removeMenuItemFetch)
+}
+
+const removeMenuItemFetch = (event) => {
+  if(event.target.classList.contains('remove-from-menu-button')){
+    let id = event.target.dataset.id
+
+    event.target.parentElement.parentElement.parentElement.parentElement.remove()
+
+    fetch(`${SUSHIS_URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
   }
 }
 
@@ -106,5 +251,8 @@ addEventListenerToSushiMenuForAddToOrderButton();
 addEventListenerToOrderDivForEmptyCartButton();
 addEventListenerToOrderListForRemoveItemButton();
 addEventListenerToOrderDivForCheckoutButton();
+addEventListenerToCustomDivForAddNewSushiButton();
+addEventListenerToNewSushiForm();
+addEventListenerToSushiMenuForRemoveFromMenuButton();
 
 }) // END OF DOMCONTENTLOADED

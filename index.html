@@ -77,7 +77,8 @@
 <br>
 <br>
 
-      <h2 class="order-title">Your Wishes</h2>
+      <h2 class="order-title wobble">⭐️ Your Wishes</h2>
+      <h2>Total Cost : <span id="total-cost-span">0</span></h2>
       <div id="order-list">
 
         <!-- <div class="order-item card hobble" onmouseover=playButtonMouseover()>
@@ -128,33 +129,46 @@
     </div>
 
     <div class="custom">
-      <br>
-      <br>
-      <h2 class="customize-title">Customize Your Sushi:</h2>
-      <form id="custom-sushi">
-        <p><label>Name:</label>
-        <p><input type="text" name="name" id="sushi-name">
-        <br/>
-        <p><label>Description:</label>
-        <p><input type="text" name="description" id="sushi-description">
-        <br/>
-        <p><label>Image URL:</label>
-        <p><input type="text" name="url" id="sushi-image">
-        <br/>
-        <br/>
-        <input class="submit-button button-grow button-grow:hover" type="submit" value="Submit Order" onmouseover=playButtonMouseover()></input>
-      </form>
-
-
-
       <div class="money-div">
-        <h3>Moneys:</h3>
+        <h3 class="grow grow:hover">💸 Moneys : $<span id="money-counter">1000</span></h3>
 
       </div>
 
+      <div>
+        <h3 class="grow grow:hover">😌 Fullness : <span id="fullness-counter">0</span></h3>
+      </div>
 
 
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2 class="customize-title">Create Your Own Sushi :</h2>
+      <button id="add-new-sushi-button" class="add-new-sushi-button button-grow button-grow:hover" onmouseover=playButtonMouseover()>Add New Sushi</button>
+      <br>
 
+      <form id="custom-sushi">
+        <p><label>Sushi Name :</label>
+        <p><input type="text" name="name" id="sushi-name">
+        <br/>
+        <p><label>Description :</label>
+        <p><input type="text" name="description" id="sushi-description">
+        <p><label>Price :</label>
+        <p><input type="number" name="price" id="sushi-price">
+        <br/>
+        <p><label>Image :</label>
+        <p>
+          <select name="image" id="sushi-image">
+            <option value="https://sushistickers.com/img/sushi-slice_99.png">Sushi 1</option>
+            <option value="https://sushistickers.com/img/sushi-slice_75.png">Sushi 2</option>
+            <option value="https://sushistickers.com/img/sushi-slice_29.png">Sushi 3</option>
+            <option value="https://lh3.googleusercontent.com/-PjRMCz4UOeE/VoWCHXGDi7I/AAAAAAAAAH0/jRL-o0KdB_U/w842-h596/maralbarismos_sushi_cute-01.png">Sushi 4</option>
+            <option value="https://i.imgur.com/RJGr3Xs.png">Sushi 5</option>
+          </select>
+        <br/>
+        <br/>
+        <input class="submit-button button-grow button-grow:hover" type="submit" value="Submit" onmouseover=playButtonMouseover()></input>
+      </form>
 
     </div>
   </div>
