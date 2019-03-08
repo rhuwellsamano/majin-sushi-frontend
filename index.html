@@ -23,11 +23,17 @@
 <body id="body">
 
 <!-- background music // comment out if you want it off -->
-  <iframe src="music.mp3" allow="autoplay" style="display:none" loop="true" id="iframeAudio">
-  </iframe>
+  <!-- <iframe src="music.mp3" allow="autoplay" style="display:none" loop="true" volume='0' id="iframeAudio">
+  </iframe> -->
+
+  <audio id="background-music" volume="0.1">
+    <source src="music.mp3" type="audio/mp3">
+    <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
 
 <!-- sound effect for sushi mouseover -->
-  <audio id="sushi-mouseover">
+  <audio id="sushi-mouseover" onplay=setMouseoverVolume()>
     <source src="mouseover.mp3" type="audio/mp3">
     <source src="mouseover.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -69,7 +75,7 @@
   Your browser does not support the audio element.
   </audio>
 
-  <audio id="alert-sound-2">
+  <audio id="alert-sound-2" volume="0.1">
     <source src="alert-sound-2.wav" type="audio/wav">
     <source src="alert-sound-2.wav" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -199,7 +205,6 @@
             <option value="cute-sushi-4.png">Sushi 9</option>
             <option value="cute-sushi-5.png">Sushi 10</option>
             <option value="cute-sushi-6.png">Sushi 11</option>
-
           </select>
         <br/>
         <br/>

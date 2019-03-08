@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+playBackgroundMusic();
 
 const SUSHIS_URL = 'http://localhost:3000/sushis'
 const USERS_URL = 'http://localhost:3000/users'
