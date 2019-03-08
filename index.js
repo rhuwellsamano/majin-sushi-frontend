@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-const SUSHIS_URL = 'http://localhost:3000/sushis'
 
+const SUSHIS_URL = 'http://localhost:3000/sushis'
+const USERS_URL = 'http://localhost:3000/users'
+
+const container = document.querySelector('.container')
+const bodyDiv = document.querySelector('#body')
+const fullnessId = document.querySelector('#fullness-id')
+const moneyId = document.querySelector('#money-id')
 const orderDiv = document.querySelector('#order-div')
 const orderList = document.querySelector('#order-list')
 const sushiMenu = document.querySelector('#sushi-menu')
@@ -11,9 +17,23 @@ const totalCostSpan = document.querySelector('#total-cost-span')
 const customDiv = document.querySelector('.custom')
 const customSushiForm = document.querySelector('#custom-sushi')
 const addNewSushiButton = document.querySelector('#add-new-sushi-button')
+const addMoneyButton = document.querySelector('.add-money-button')
+const moodEmoji = document.querySelector('#mood-emoji')
 
 let sushiCounter = 0
 let orderTotalCost = 0
+
+const getUsersFetch = () => {
+  fetch(USERS_URL)
+  .then(res => res.json())
+  .then(allUsersData => showUsersData(allUsersData))
+}
+
+const showUsersData = (allUsersData) => {
+  // console.log(allUsersData[0])
+  moneyCounter.innerHTML = allUsersData[0].money
+
+}
 
 const getSushisFetch = () => {
   fetch(SUSHIS_URL)
@@ -33,14 +53,14 @@ const showOneSushi = (sushi) => {
   const { id, name, price, image_url, description } = sushi
 
    sushiMenu.innerHTML += `
-      <div class="sushi">
+      <div class="sushi" data-aos="zoom-in-up">
         <div class="shine shine:hover">
        <div><span><h3 class="sushi-title button-grow button-grow:hover go-left">${sushi.name}</h3><h3 class="sushi-price button-grow button-grow:hover go-right">$${sushi.price}.00</h3></span></div>
        <br>
        <br>
        <div><img src="${sushi.image_url}" class="sushi-image grow grow:hover wobble" onmouseover=playSushiMouseover() onclick=playAddSushiToOrderClick()></div>
        <div class="sushi-description right">
-       <a class="tooltips" href="#">🔷
+       <a class="tooltips" href="#">❓
          <span>${sushi.description}</span></a>
        <p><button class="button add-to-order-button shine shine:hover button-grow button-grow:hover" data-id=${sushi.id} data-name="${name}" data-price="${price}" data-image="${image_url}" data-description="${description}" onmouseover=playButtonMouseover() onclick=playAddSushiToOrderClick()>+</button><button class="remove-from-menu-button button-grow button-grow:hover" data-id=${sushi.id} onmouseover=playButtonMouseover() onclick=playRemoveButtonClick()>-</button></p>
        </div>
@@ -149,7 +169,7 @@ const checkoutOrder = (event) => {
     event.target.parentElement.querySelector('#order-list').innerHTML = ''
 
     let oldFullnessCount = parseInt(fullnessCounter.innerHTML)
-    let fullnessEffect = sushiCounter * 15
+    let fullnessEffect = sushiCounter * 7
     let newFullnessCount = oldFullnessCount + fullnessEffect
     fullnessCounter.innerHTML = newFullnessCount
 
@@ -167,6 +187,26 @@ const checkoutOrder = (event) => {
     orderTotalCost = 0
 
     totalCostSpan.innerHTML = `${orderTotalCost}`
+
+    let id = event.target.dataset.id
+
+    // debugger
+
+    fetch(`${USERS_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        // id: id,
+        // name: "John",
+        // email: "john@google.com",
+        money: afterMoney // whats wrong with my Patch.. hmm.. check Users Controller as per Stack Trace
+      })
+    })
+    .then(res => res.json())
+    .then(updatedUserObj => console.log(updatedUserObj))
 
   }
 }
@@ -242,10 +282,67 @@ const removeMenuItemFetch = (event) => {
   }
 }
 
+const addEventListenerToAddMoneyButton = () => {
+  addMoneyButton.addEventListener('click', addMoreMoneyHax)
+}
 
+const addMoreMoneyHax = (event) => {
+  let beforeMoney = parseInt(moneyCounter.innerText)
+  let newMoney = beforeMoney + 27
+  let id = event.target.dataset.id
 
+  moneyCounter.innerText = newMoney
+
+  // moneyId.classList = 'grow grow:hover
+  // look up how to shake on click'
+
+  fetch(`${USERS_URL}/${id}`, {
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      money: newMoney
+    })
+  })
+  .then(res => res.json())
+  .then(updatedUserObj => console.log(updatedUserObj))
+}
+
+setInterval(function() {
+  let previousFullness = parseInt(fullnessCounter.innerText);
+  let updatedFullness = previousFullness - 1;
+  fullnessCounter.innerText = updatedFullness
+
+  if(fullnessCounter.innerText < 1){
+    fullnessCounter.innerText = 0
+  }
+}, 2000);
+
+setInterval(function() {
+ let fullnessCount = parseInt(fullnessCounter.innerText);
+
+  if(fullnessCount < 15){
+    bodyDiv.classList = 'flash-alert'
+    container.style.borderRadius = '15px'
+    fullnessId.classList = 'grow grow:hover shake flash-alert';
+
+    moodEmoji.innerHTML = '😫'
+
+    playAlertSound2();
+    playHungry();
+
+  } else {
+    bodyDiv.classList = '';
+    container.style.backgroundColor = 'white'
+    fullnessId.classList = 'grow grow:hover';
+    moodEmoji.innerHTML = '😌'
+  }
+}, 1000);
 
 // CALLS
+getUsersFetch();
 getSushisFetch();
 addEventListenerToSushiMenuForAddToOrderButton();
 addEventListenerToOrderDivForEmptyCartButton();
@@ -254,5 +351,6 @@ addEventListenerToOrderDivForCheckoutButton();
 addEventListenerToCustomDivForAddNewSushiButton();
 addEventListenerToNewSushiForm();
 addEventListenerToSushiMenuForRemoveFromMenuButton();
+addEventListenerToAddMoneyButton();
 
 }) // END OF DOMCONTENTLOADED

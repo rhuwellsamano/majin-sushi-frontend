@@ -11,9 +11,9 @@
 
 
 #sushi-menu {
-  /* display: grid; */
+  display: grid;
   padding: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(405px, 1fr));
   grid-gap: 1rem;
   text-align: center;
   overflow: auto;
@@ -58,6 +58,21 @@
   outline-style: none;
   font-size: 18px;
   font-family: 'Slackey', 'Open-Sans';
+}
+
+.add-money-button {
+  margin: 15px;
+  margin-bottom: -25px;
+  outline-style: none;
+  font-size: 12px;
+  font-family: 'Slackey', 'Open-Sans';
+
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+
 
 }
 
@@ -181,7 +196,7 @@ body {
 }
 
 
-.add-to-order-button, .checkout-button, .empty-cart-button, .submit-button, .add-new-sushi-button {
+.add-to-order-button, .checkout-button, .empty-cart-button, .submit-button, .add-new-sushi-button, .add-money-button {
   display: block;
   background-color: tomato;
   padding: 5px 10px;
@@ -249,7 +264,7 @@ body {
 .add-new-sushi-button {
   margin: 15px;
   font-size: 18px;
-  font-family: 'Slackey', 'Open-Sans'; 
+  font-family: 'Slackey', 'Open-Sans';
 }
 
 
@@ -268,6 +283,7 @@ img {
   grid-gap: 5px;
   background-color: #FFF;
   height: 100vh;
+  border-radius: 15px;
   /* grid-template-columns: repeat(12, 1fr); */
   grid-template-rows: 70px 350px 70px;
   grid-template-areas:
@@ -408,7 +424,10 @@ nav {
 }
 
 .majin-logo {
-  /* color: white; */
+  color: tomato;
+  font-style: italic;
+  font-size: 18px;
+  font-family: 'Slackey', 'Open-Sans';
 }
 
 html.darkenPage {
@@ -438,6 +457,22 @@ html.darkenPage {
   display: none;
 }
 
+
+.flash-alert {
+  -webkit-animation: flash-animation 1s infinite;  /* Safari 4+ */
+  -moz-animation: flash-animation 0.5s infinite;  /* Fx 5+ */
+  -o-animation: flash-animation 0.5s infinite;  /* Opera 12+ */
+  animation: flash-animation 0.5s infinite;  /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes flash-animation {
+  0%, 49% {
+    background-color: orange;
+  }
+  50%, 100% {
+    background-color: #e50000;
+  }
+}
 
 
 
@@ -533,6 +568,40 @@ shine:hover {
 
 
 
+.shake {
+  animation: shake 1s infinite cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.shake-once {
+  animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+
 
 
 
@@ -542,6 +611,7 @@ a.tooltips {
     position: relative;
     display: inline;
     font-size: 12px;
+    text-decoration: none;
 }
 a.tooltips span {
     position: absolute;

@@ -10,6 +10,8 @@
 
   <link href="stylesheet.css" rel="stylesheet">
 
+
+
   <!-- BOOTSTRAP -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
@@ -18,10 +20,10 @@
   <title>Majin Sushi</title>
 
 </head>
-<body>
+<body id="body">
 
 <!-- background music // comment out if you want it off -->
-  <iframe src="music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+  <iframe src="music.mp3" allow="autoplay" style="display:none" loop="true" id="iframeAudio">
   </iframe>
 
 <!-- sound effect for sushi mouseover -->
@@ -61,6 +63,30 @@
   Your browser does not support the audio element.
   </audio>
 
+  <audio id="alert-sound">
+    <source src="alert-sound.mp3" type="audio/mp3">
+    <source src="alert-sound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="alert-sound-2">
+    <source src="alert-sound-2.wav" type="audio/wav">
+    <source src="alert-sound-2.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="chaching">
+    <source src="chaching.wav" type="audio/wav">
+    <source src="chaching.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="hungry">
+    <source src="hungry.wav" type="audio/wav">
+    <source src="hungry.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
   <!-- note for above: i have to switch 'empty cart sound' with 'remove from menu sound' -->
 
 
@@ -74,11 +100,11 @@
 
 <br>
 <img src="majin-logo.png" class="logo button-grow button-grow:hover"/>
-<br>
+<div><h4 class="majin-logo">Majin Sushi</h4></div>
 <br>
 
       <h2 class="order-title wobble">⭐️ Your Wishes</h2>
-      <h2>Total Cost : <span id="total-cost-span">0</span></h2>
+      <h2>Total Cost : $<span id="total-cost-span">0</span></h2>
       <div id="order-list">
 
         <!-- <div class="order-item card hobble" onmouseover=playButtonMouseover()>
@@ -113,7 +139,9 @@
 
     </div>
 
-    <button class="checkout-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
+
+<!-- for data id below, figure out a way to get logged in users data id into there once theres more users..? -->
+    <button class="checkout-button button-grow button-grow:hover" data-id="1" onmouseover=playButtonMouseover() onclick=playCheckoutClick()>Checkout</button>
 
     <button class="empty-cart-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playRemoveItemFromOrderClick()>Empty Cart</button>
 
@@ -129,36 +157,37 @@
     </div>
 
     <div class="custom">
-      <div class="money-div">
-        <h3 class="grow grow:hover">💸 Moneys : $<span id="money-counter">1000</span></h3>
+      <div class="money-box"><button class="add-money-button button-grow button-grow:hover" onmouseover=playButtonMouseover() onclick=playChaching() data-id="1">Gimme Moar Munz!</button></div>
 
+      <div class="money-div">
+        <h3 id="money-id" class="grow grow:hover">💸 Moneys : $<span id="money-counter">1000</span></h3>
       </div>
 
       <div>
-        <h3 class="grow grow:hover">😌 Fullness : <span id="fullness-counter">0</span></h3>
+        <h3 id="fullness-id" class="grow grow:hover"><span id="mood-emoji">😌</span> Fullness : <span id="fullness-counter">25</span></h3>
       </div>
 
 
+
+
       <br>
-      <br>
-      <br>
-      <br>
-      <h2 class="customize-title">Create Your Own Sushi :</h2>
+      <h2 class="customize-title wobble">🍙 Create Your Own :</h2>
       <button id="add-new-sushi-button" class="add-new-sushi-button button-grow button-grow:hover" onmouseover=playButtonMouseover()>Add New Sushi</button>
       <br>
 
       <form id="custom-sushi">
         <p><label>Sushi Name :</label>
-        <p><input type="text" name="name" id="sushi-name">
+        <input type="text" name="name" id="sushi-name">
         <br/>
         <p><label>Description :</label>
-        <p><input type="text" name="description" id="sushi-description">
+        <input type="text" name="description" id="sushi-description">
         <p><label>Price :</label>
-        <p><input type="number" name="price" id="sushi-price">
+        <input type="number" name="price" id="sushi-price">
         <br/>
         <p><label>Image :</label>
-        <p>
+
           <select name="image" id="sushi-image">
+            <option value="dragonball.png">Dragonball</option>
             <option value="https://sushistickers.com/img/sushi-slice_99.png">Sushi 1</option>
             <option value="https://sushistickers.com/img/sushi-slice_75.png">Sushi 2</option>
             <option value="https://sushistickers.com/img/sushi-slice_29.png">Sushi 3</option>
@@ -178,4 +207,8 @@
 </body>
 <script src="audio.js" charset="utf-8"></script>
 <script src="index.js" charset="utf-8"></script>
+
+
+
+
 </html>
